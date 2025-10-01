@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="fel_res_company_form" model="ir.ui.view">
+    <field name="name">fel.res.company.form</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Esteblecimientos" name="establecimientos">
+          <field name="establecimiento_ids" nolabel="1">
+            <tree editable="bottom">
+              <field name="codigo" />
+              <field name="name" />
+              <field name="direccion" />
+              <field name="municipio" />
+              <field name="departamento" />
+            </tree>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

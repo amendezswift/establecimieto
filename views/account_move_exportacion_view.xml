@@ -1,0 +1,28 @@
+<odoo>
+  <record id="account_move_exportacion_view" model="ir.ui.view">
+    <field name="name">account.move.exportacion.view</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Exportación"
+          invisible="move_type not in ['out_invoice', 'out_refund'] or factura_especial">
+          <group string="Datos de exportación">
+            <group>
+              <field name="nombre_consignatario" readonly="state == 'posted' or state == 'cancel'" />
+              <field name="direccion_consignatario"
+                readonly="state == 'posted' or state == 'cancel'" />
+              <field name="codigo_consignatario" readonly="state == 'posted' or state == 'cancel'" />
+            </group>
+            <group>
+              <field name="nombre_comprador" readonly="state == 'posted' or state == 'cancel'" />
+              <field name="direccion_comprador" readonly="state == 'posted' or state == 'cancel'" />
+              <field name="codigo_comprador" readonly="state == 'posted' or state == 'cancel'" />
+              <field name="referencia" readonly="state == 'posted' or state == 'cancel'" />
+            </group>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

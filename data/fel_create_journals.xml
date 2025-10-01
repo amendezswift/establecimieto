@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data noupdate="1">
+    <record model="account.journal" id="special_invoices_journal">
+      <field name="name">FACTURAS ESPECIALES</field>
+      <field name="type">purchase</field>
+      <field name="refund_sequence">1</field>
+      <field name="code">FESP</field>
+      <field name="facturas_especiales">1</field>
+      <field name="facturacion_activa">1</field>
+    </record>
+  </data>
+</odoo>

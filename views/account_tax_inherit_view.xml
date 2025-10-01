@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="account_tax_inherit_view_form" model="ir.ui.view">
+    <field name="name">account.tax.inherit.view.form</field>
+    <field name="model">account.tax</field>
+    <field name="inherit_id" ref="account.view_tax_form" />
+    <field name="arch" type="xml">
+      <field name="description" position="after">
+        <field name="nombre_corto" />
+        <field name="codigo_gravable" />
+      </field>
+
+      <xpath expr="//field[@name='amount']/.." position="after">
+        <field name="unidad_medida" />
+      </xpath>
+
+      <xpath expr="//label[@for='amount']" position="attributes">
+        <attribute name="invisible">False</attribute>
+      </xpath>
+      <xpath expr="//label[@for='amount']/following-sibling::div[1]" position="attributes">
+        <attribute name="invisible">False</attribute>
+      </xpath>
+    </field>
+  </record>
+</odoo>

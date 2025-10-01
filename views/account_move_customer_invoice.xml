@@ -1,0 +1,6 @@
+<odoo>
+  <record id="account.action_move_out_invoice_type" model="ir.actions.act_window">
+    <field name="domain">[("move_type", "=", "out_invoice"), ("nota_debito", "=", False),
+      ("debit_origin_id", "=", None)]</field>
+  </record>
+</odoo>

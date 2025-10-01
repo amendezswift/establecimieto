@@ -1,0 +1,12 @@
+<odoo>
+  <record id="account_move_nota_debito_view" model="ir.ui.view">
+    <field name="name">account.move.special.invoice.view</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='tipo_factura']" position="after">
+        <field name="nota_debito" invisible="1" />
+      </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <menuitem
+    id="fel_establecimientos_menu"
+    name="Establecimientos"
+    parent="fel.menu_frases_fel_parent"
+    action="fel_establecimientos_action"
+  />
+</odoo>

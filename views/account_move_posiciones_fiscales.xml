@@ -1,0 +1,20 @@
+<odoo>
+  <record id="account_fiscal_position_form_extension" model="ir.ui.view">
+    <field name="name">account.fiscal.position.form.extension</field>
+    <field name="model">account.fiscal.position</field>
+    <field name="inherit_id" ref="account.view_account_position_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Frases FEL">
+          <field name="frases_fel_id">
+            <tree>
+              <field name="tipo_frase" />
+              <field name="codigo_escenario" />
+              <field name="descripcion" />
+            </tree>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,25 @@
+<odoo>
+  <record id="wizard_anular_facturas_form_view" model="ir.ui.view">
+    <field name="name">wizard.anular.facturas.form.view</field>
+    <field name="model">wizard.anular.factura</field>
+    <field name="arch" type="xml">
+      <form string="Anular factura">
+        <group>
+          <field name="motivo_anulacion" />
+        </group>
+        <footer>
+          <button string="Anular" type="object" name="action_anular_factura" class="btn-primary" />
+          <button string="Cancelar" class="btn-secondary" special="cancel" />
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_wizard_anular_factura" model="ir.actions.act_window">
+    <field name="name">Anular factura</field>
+    <field name="res_model">wizard.anular.factura</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="wizard_anular_facturas_form_view" />
+    <field name="target">new</field>
+  </record>
+</odoo>

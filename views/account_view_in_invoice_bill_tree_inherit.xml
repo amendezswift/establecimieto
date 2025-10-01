@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="account_view_in_invoice_bill_tree_inherit" model="ir.ui.view">
+    <field name="name">account.view.in.invoice.bill.tree.inherit</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_in_invoice_bill_tree" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_vat']" position="before">
+        <field name="serie_proveedor" string="Serie" optional="show" />
+        <field name="dte_proveedor" string="No. DTE" optional="show" />
+      </xpath>
+      <xpath expr="//field[@name='payment_state']" position="before">
+        <field name="amount_residual" />
+      </xpath>
+    </field>
+  </record>
+</odoo>

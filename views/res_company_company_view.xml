@@ -1,0 +1,16 @@
+<odoo>
+  <record id="res_company_company_view" model="ir.ui.view">
+    <field name="name">re.company.company.view</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='currency_id']" position="after">
+        <field name="codigo_exportador" />
+      </xpath>
+      <xpath expr="//field[@name='razon_social']" position="after">
+        <field name="nombre_comercial" />
+        <field name="nombre_emisor" groups="base.group_no_one" />
+      </xpath>
+    </field>
+  </record>
+</odoo>

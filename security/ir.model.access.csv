@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_anular_factura,wizard.anular.factura,model_wizard_anular_factura,,1,1,1,1
+access_account_move,account.move,model_account_move,,1,1,1,1
+access_frases_fel,frases.fel,model_frases_fel,,1,1,1,1
+access_errores_fel,errores.fel,model_errores_fel,,1,1,1,1
+access_generar_factura,generar.factura,model_generar_factura,,1,1,1,1
+access_generar_especial,generar.especial,model_generar_especial,,1,1,1,1
+access_generar_nota_credito,generar.nota.credito,model_generar_nota_credito,,1,1,1,1
+access_generar_nota_debito,generar.nota.debito,model_generar_nota_debito,,1,1,1,1
+access_anular_factura,anular.factura,model_anular_factura,,1,1,1,1
+access_establecimientos,establecimientos,model_establecimientos,,1,1,1,1

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data noupdate="1">
+    <record model="account.tax.group" id="iva_cero_group">
+      <field name="name">IVA 0%</field>
+      <field name="country_id" ref="base.gt" />
+      <field name="sequence">10</field>
+    </record>
+
+    <record model="account.tax.group" id="reten_iva_especial_group">
+      <field name="name">RET IVA</field>
+      <field name="country_id" ref="base.gt" />
+      <field name="sequence">10</field>
+    </record>
+
+    <record model="account.tax.group" id="reten_isr_especial_group">
+      <field name="name">RET ISR</field>
+      <field name="country_id" ref="base.gt" />
+      <field name="sequence">10</field>
+    </record>
+  </data>
+</odoo>

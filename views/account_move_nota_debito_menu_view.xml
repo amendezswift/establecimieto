@@ -1,0 +1,12 @@
+<odoo>
+  <record id="account_move_nota_debito_menu_view" model="ir.actions.act_window">
+    <field name="name">Notas de débito</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[("nota_debito", "=", True), ("debit_origin_id", "!=", None)]</field>
+    <field name="context">{"default_move_type": "out_invoice", "default_nota_debito": True}</field>
+  </record>
+
+  <menuitem id="menu_nota_debito" name="Notas de débito"
+    parent="account.menu_finance_receivables" action="account_move_nota_debito_menu_view" />
+</odoo>

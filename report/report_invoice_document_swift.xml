@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_invoice_document_swift"
+              inherit_id="account.report_invoice_document">
+      
+      <xpath expr="//div[@class='page mb-4']" position="before">
+        <div id="seccion-fel"
+           class="mb-5 p-3 border rounded">
+    
+        <div class="text-center mb-4">
+          <p class="h5 mb-1" style="font-weight:bold;">Regímen FEL</p>
+          <p class="mb-0"><small>Documento Tributario Electrónico</small></p>
+        </div>
+        
+        <div class="mb-3">
+          <h4 class="fw-bold mb-0">
+            <t t-if="o.factura_especial">Factura Especial</t>
+            <t t-elif="o.move_type=='out_invoice'">Factura</t>
+            <t t-elif="o.move_type=='out_refund'">Nota de crédito</t>
+            <t t-elif="o.debit_origin_id">Nota de débito</t>
+            <t t-else="">Factura</t>
+          </h4>
+        </div>
+          <!-- Datos en tabla de dos columnas -->
+          <table class="table table-sm w-100 mb-0">
+            <tr>
+              <td><strong>Certificador:</strong> <span t-field="o.company_id.proveedor"/></td>
+              <td><strong>NIT Compañía:</strong> <span t-field="o.company_id.vat"/></td>
+            </tr>
+            <tr>
+              <td><strong>Serie:</strong> <span t-field="o.serie"/></td>
+              <td><strong>N° Autorización:</strong> <span t-field="o.numero_autorizacion"/></td>
+            </tr>
+            <tr>
+              <td><strong>Moneda:</strong> <span t-field="o.company_id.currency_id.name"/></td>
+              <td><strong>NIT Certificador:</strong> 12521337</td>
+            </tr>
+          </table>
+        </div>
+      </xpath>
+
+      <!-- 2) Bloque Frases -->
+      <xpath expr="//div[@id='seccion-fel']//table" position="after">
+        <div id="frases-documento" class="mb-4">
+          <strong class="strong_block">Frases</strong><br/>
+          <div t-if="o.company_id.tipo_contribuyente=='general'">
+            <span t-if="o.company_id.regimen_isr=='utilities'">Sujeto a pagos trimestrales ISR</span>
+            <span t-if="o.company_id.regimen_isr=='simplified'">Sujeto a retención definitiva ISR</span>
+          </div>
+          <span t-if="o.company_id.retenedor_iva">Agente de Retención del IVA</span>
+        </div>
+      </xpath>
+
+      <!-- 3) Pie con complementos -->
+      <xpath expr="//div[@class='mt-5 clearfix']" position="after">
+        <div id="footer-documento" class="mt-3">
+          <!-- Exportación -->
+          <t t-if="o.fiscal_position_id.name=='Exportación'">
+            <div class="complemento mt-3">
+              <strong class="strong_block">Complemento: Exportación</strong>
+              <ul class="footer-text">
+                <li><strong>Nombre del consignatario:</strong> <span t-field="o.nombre_consignatario"/></li>
+                <li><strong>Dirección del consignatario:</strong> <span t-field="o.direccion_consignatario"/></li>
+                <li t-if="o.codigo_consignatario"><strong>Código:</strong> <span t-field="o.codigo_consignatario"/></li>
+                <li t-if="o.nombre_comprador"><strong>Comprador:</strong> <span t-field="o.nombre_comprador"/></li>
+                <li t-if="o.direccion_comprador"><strong>Dir. comprador:</strong> <span t-field="o.direccion_comprador"/></li>
+                <li t-if="o.codigo_comprador"><strong>Código comprador:</strong> <span t-field="o.codigo_comprador"/></li>
+                <li><strong>Otra referencia:</strong> <span t-field="o.referencia"/></li>
+                <li t-if="o.invoice_incoterm_id"><strong>INCOTERM:</strong> <span t-field="o.invoice_incoterm_id.code"/></li>
+                <li><strong>Exportador:</strong> <span t-field="o.company_id.razon_social"/></li>
+                <li><strong>Código exportador:</strong> <span t-field="o.company_id.codigo_exportador"/></li>
+              </ul>
+            </div>
+          </t>
+          <!-- Factura Especial -->
+          <t t-if="o.tipo_factura=='fact_especial'">
+            <ul class="footer-text mb-3">
+              <li><strong>Retención ISR (5%):</strong>
+                <t t-set="monto_isr" t-value="round(o.amount_untaxed*0.05,2)"/>
+                <span t-esc="monto_isr"/>
+              </li>
+              <li><strong>Retención IVA (12%):</strong>
+                <t t-set="monto_iva" t-value="round(o.amount_untaxed*0.12,2)"/>
+                <span t-esc="monto_iva"/>
+              </li>
+              <li><strong>Total menos retenciones:</strong> <span t-field="o.amount_total"/></li>
+            </ul>
+          </t>
+          <!-- Nota de crédito -->
+          <t t-if="o.reversed_entry_id">
+            <ul class="footer-text mb-3">
+              <li><strong>Complemento:</strong> Nota de Crédito</li>
+              <li><strong>Fecha original:</strong> <span t-field="o.reversed_entry_id.invoice_date"/></li>
+              <li><strong>Serie origen:</strong> <span t-field="o.reversed_entry_id.serie"/></li>
+              <li><strong>Número origen:</strong> <span t-field="o.reversed_entry_id.numero_dte"/></li>
+              <li><strong>Autorización origen:</strong> <span t-field="o.reversed_entry_id.numero_autorizacion"/></li>
+            </ul>
+          </t>
+          <!-- Nota de débito -->
+          <t t-if="o.debit_origin_id">
+            <ul class="footer-text mb-3">
+              <li><strong>Complemento:</strong> Nota de Débito</li>
+              <li><strong>Fecha original:</strong> <span t-field="o.debit_origin_id.invoice_date"/></li>
+              <li><strong>Serie origen:</strong> <span t-field="o.debit_origin_id.serie"/></li>
+              <li><strong>Número origen:</strong> <span t-field="o.debit_origin_id.numero_dte"/></li>
+              <li><strong>Autorización origen:</strong> <span t-field="o.debit_origin_id.numero_autorizacion"/></li>
+            </ul>
+          </t>
+          <!-- Factura Cambiaria -->
+          <t t-if="o.tipo_factura=='fact_cambiaria'">
+            <ul class="footer-text">
+              <li><strong>Complemento:</strong> Factura Cambiaria</li>
+              <li><strong>Número de abono:</strong> 1</li>
+              <li><strong>Fecha vencimiento:</strong> <span t-field="o.invoice_date_due"/></li>
+              <li><strong>Monto abono:</strong> <span t-field="o.amount_total"/></li>
+            </ul>
+          </t>
+        </div>
+      </xpath>
+
+      <!-- 4) Override de impuestos en líneas -->
+      <xpath expr="//t[@t-set='taxes']" position="replace">
+        <t t-set="taxes" t-value="', '.join([tax.name for tax in line.tax_ids])"/>
+      </xpath>
+
+      <!-- 5) Carga de CSS personalizado -->
+      <xpath expr="/t/t[1]" position="inside">
+        <link rel="stylesheet" href="/fel/static/src/css/reporte_factura.css"/>
+      </xpath>
+
+    </template>
+  </data>
+</odoo>

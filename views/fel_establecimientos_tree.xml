@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="fel_establecimientos_tree" model="ir.ui.view">
+    <field name="name">fel.establecimientos.tree</field>
+    <field name="model">establecimientos</field>
+    <field name="arch" type="xml">
+      <tree string="Establecimientos">
+        <field name="codigo" />
+        <field name="name" />
+        <field name="direccion" />
+        <field name="empresa_id" />
+      </tree>
+    </field>
+  </record>
+</odoo>

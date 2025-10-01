@@ -1,0 +1,25 @@
+<odoo>
+  <record id="res_partner_exportacion_campos_view" model="ir.ui.view">
+    <field name="name">res.partner.exportacion.campos.view</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Datos para exportación">
+          <group>
+            <group string="Información del consignatario">
+              <field name="nombre_consignatario" />
+              <field name="direccion_consignatario" />
+              <field name="codigo_consignatario" />
+            </group>
+            <group string="Información del comprador">
+              <field name="nombre_comprador" />
+              <field name="direccion_comprador" />
+              <field name="codigo_comprador" />
+            </group>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>
